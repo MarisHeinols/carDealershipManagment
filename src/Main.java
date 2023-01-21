@@ -1,6 +1,10 @@
 import Cars.Car;
 import Cars.CarBuilder;
 import Cars.parts.*;
+import Order.CarOrder;
+import Order.ClientSpecOrderDecarator;
+import Order.OrderDecarator;
+import Order.ToyotaOrderDecarator;
 import Sellers.Seller;
 import Sellers.BusinessSell;
 import Sellers.PrivateSell;
@@ -17,7 +21,7 @@ public class Main {
     //Construction - builder used to create cars
     //Structural - adapter used in fitting cars in showroom or storage
     //Behavioral - strategy used to determine different strategies to sell cars
-    //
+    //Structural - decorator used to create different car orders
     public static void main(String[] args) {
         Director director = new Director();
         CarBuilder builder = new CarBuilder();
@@ -61,14 +65,10 @@ public class Main {
             System.out.println("All cars fit moving all in show room");
         }else{
             // If cars don`t fit move car by car to storage till cars fit showroom
-            for(Car car:carDelivery.getCars()){
-                carsThatDontfit.add(car);
-                cars.remove(car);
-                carDelivery = new CarDelivery(cars);
-                if(carDelivery.fits(storageAdapterOne)){
-                    break;
-                }
-
+            // If cars don`t fit move car by car to storage till cars fit showroom
+            while(!carDelivery.fits(storageAdapterOne)){
+                carsThatDontfit.add(carDelivery.getCars().get(0));
+                carDelivery.removeCar(0);
             }
             System.out.println(cars.size() + " cars were stored in show room");
             showRoom.setStoredCars(cars);
@@ -109,6 +109,11 @@ public class Main {
             System.out.println("buyer can`t afford to buy");
         }
 
+        director.constructToyotaSuv(builder);
+        OrderDecarator newPrivateToyotaOrder = new ToyotaOrderDecarator(new ClientSpecOrderDecarator(new CarOrder(builder.getProduct(),500.0)));
+        System.out.println("Inital order is: " + newPrivateToyotaOrder.getCost());
+        newPrivateToyotaOrder.addItem(builder.getProduct());
+        System.out.println("Added suv, order now is: " + newPrivateToyotaOrder.getCost());
 
     }
 }

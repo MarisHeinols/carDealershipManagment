@@ -3,7 +3,7 @@ package Storage;
 import java.util.ArrayList;
 import Cars.Car;
 public class CarDelivery {
-    private final ArrayList<Car> cars;
+    private ArrayList<Car> cars;
 
     public CarDelivery(ArrayList<Car> cars) {
         this.cars = cars;
@@ -20,6 +20,13 @@ public class CarDelivery {
 
     public ArrayList<Car> getCars() {
         return cars;
+    }
+
+    public void setCars(ArrayList<Car> cars) {
+        this.cars = cars;
+    }
+    public void removeCar(int index){
+        this.cars.remove(index);
     }
 
     public boolean fits(Storage storage){
