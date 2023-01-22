@@ -111,8 +111,10 @@ public class Main {
 
         director.constructToyotaSuv(builder);
         OrderDecarator newPrivateToyotaOrder = new ToyotaOrderDecarator(new ClientSpecOrderDecarator(new CarOrder(builder.getProduct(),500.0)));
+        newPrivateToyotaOrder.setCost(500.00);
         System.out.println("Inital order is: " + newPrivateToyotaOrder.getCost());
         newPrivateToyotaOrder.addItem(builder.getProduct());
+        newPrivateToyotaOrder.setCost(500.00);
         System.out.println("Added suv, order now is: " + newPrivateToyotaOrder.getCost());
 
     }

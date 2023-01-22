@@ -15,8 +15,6 @@ public class Car {
     private final double wight;
     private final double length;
     private final int hp;
-    private boolean isBought;
-
     private double price;
 
     public Car(String manufacture, String model, int year, Engine engine,
@@ -33,31 +31,6 @@ public class Car {
         this.length = length;
         this.price = price;
     }
-
-    public String getManufacture() {
-        return manufacture;
-    }
-
-    public String getModel() {
-        return model;
-    }
-
-    public int getYear() {
-        return year;
-    }
-
-    public Engine getEngine() {
-        return engine;
-    }
-
-    public CarType getType() {
-        return type;
-    }
-
-    public Transmition getTransmition() {
-        return transmition;
-    }
-
     public double getWight() {
         return wight;
     }
@@ -66,25 +39,11 @@ public class Car {
         return length;
     }
 
-    public boolean isBought() {
-        return isBought;
-    }
-
-    public void setBought(boolean bought) {
-        isBought = bought;
-    }
-
-    public int getHp() {
-        return hp;
-    }
 
     public double getPrice() {
         return price;
     }
 
-    public void setPrice(double price) {
-        this.price = price;
-    }
 
     @Override
     public String toString() {
